@@ -1,4 +1,4 @@
-package me.joohyuk.codinginterview.chapter08;
+package me.joohyuk.codinginterview.chapter08.RobotGrid;
 
 import java.awt.*;
 import java.util.Set;
