@@ -1,4 +1,4 @@
-package me.joohyuk.sort;
+package me.joohyuk.basic.sort;
 
 public class InsertionSort {
 
