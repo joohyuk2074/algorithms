@@ -1,19 +1,19 @@
 def solution(n):
-    answer = [[]]
+    answer = []
 
-    def hanoi(n, start, inter, to):
+    def hanoi(n, start, via, dst):
         if n == 1:
-            answer.append([start, to])
+            answer.append([start, dst])
             return
 
-        hanoi(n - 1, start, to, inter)
-        print(str(start) + " to " + str(to))
-        hanoi(n - 1, inter, to, inter)
+        hanoi(n - 1, start, dst, via)
+        answer.append([start, dst])
+        hanoi(n - 1, via, start, dst)
 
     hanoi(n, 1, 2, 3)
 
     return answer
 
 
-solution(3)
-
+result = solution(2)
+print(result)
