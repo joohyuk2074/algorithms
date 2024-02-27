@@ -1,14 +1,8 @@
-from collections import deque
-
-
-def bfs(start):
-    queue = deque([start])
-    while queue:
-        node = queue.popleft()
-        for end in vector[node]:
-            if check[end] == 0:
-                check[end] = 1
-                queue.append(end)
+def dfs(x):
+    for end in vector[x]:
+        if check[end] == 0:
+            check[end] = 1
+            dfs(end)
 
 
 n = int(input())
@@ -25,7 +19,7 @@ for i in range(n):
 
 for start in range(n):
     check = [0 for _ in range(n)]
-    bfs(start)
+    dfs(start)
     for j in range(n):
         print(str(check[j]) + " ", end="")
     print()
