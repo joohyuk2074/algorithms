@@ -1,29 +1,41 @@
-def recursive(index, current_point, drive_distance):
-    global min_dist
+import heapq
 
-    if current_point == d:
-        min_dist = min(min_dist, drive_distance)
-        return
+INF = int(1e9)
 
-    if current_point > d:
-        return
 
-    for i in range(index, n):
-        # 현재 current_point보다 start지점이 앞에 있는지 확인
-        start, end, 지름길 = arr[i]
-        if current_point == start:
-            if end - start > 지름길:
-                recursive(i + 1, end, drive_distance + 지름길)
-            else:
-                recursive(i + 1, current_point + 1, drive_distance + 1)
-        else:
-            recursive(i + 1, current_point + 1, drive_distance + 1)
+def dijkstra(start):
+    q = []
+    heapq.heappush(q, (0, start))
+    distance[start] = 0
+
+    while q:
+        dist, now = heapq.heappop(q)
+
+        if dist > distance[now]:
+            continue
+
+        for next_vertex, next_dist in graph[now]:
+            new_distance = dist + next_dist
+            if new_distance < distance[next_vertex]:
+                distance[next_vertex] = new_distance
+                heapq.heappush(q, (new_distance, next_vertex))
 
 
 n, d = map(int, input().split())
-arr = [list(map(int, input().split())) for _ in range(n)]
-min_dist = 10000
+graph = [[] for _ in range(d + 1)]
+distance = [INF] * (d + 1)
 
-recursive(0, 0, 0)
+# 일단 거리 1로 초기화
+for i in range(d):
+    graph[i].append((i + 1, 1))
 
-print(min_dist)
+# 지름길 있는 경우에 업데이트
+for _ in range(n):
+    start, end, l = map(int, input().split())
+    if end > d:
+        continue
+    graph[start].append([end, l])
+
+dijkstra(0)
+
+print(distance[d])
