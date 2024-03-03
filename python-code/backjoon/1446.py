@@ -14,7 +14,7 @@ def dijkstra(start):
         if dist > distance[now]:
             continue
 
-        for next_vertex, next_dist in graph[now]:
+        for next_vertex, next_dist in graph[now]:       # 간선 방문 e
             new_distance = dist + next_dist
             if new_distance < distance[next_vertex]:
                 distance[next_vertex] = new_distance
