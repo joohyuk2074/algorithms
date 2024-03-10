@@ -1,6 +1,7 @@
 package me.joohyuk.codinginterview.chapter02;
 
-public class Problem06 {
+public class Problem06_01 {
+    // 뒤집어서 비교
 
     boolean isPalindrome(LinkedListNode head) {
         LinkedListNode reversed = reverseAndClone(head);
